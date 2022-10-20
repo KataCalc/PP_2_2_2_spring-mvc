@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>car</title>
+    <style>
+        table th, table td {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+<h1>машины</h1>
+<form>
+    <input type = "button"
+    value="count Car"
+    onclick='location.href = "/cars"'>
+</form>
+
+<h1>Cars</h1>
+<!-- Create an Array: -->
+<div class="container" th:with="intList = ${ {1, 2, 3, 4, 5} }">
+    <div class="row mt-4 mb-4">
+        Вывести
+        <a th:each="c : ${intList}" th:href="@{/cars(count=${c})}" th:text="|&nbsp;${c}&nbsp;|"/>
+        <a th:href="@{/cars}" th:text="Все"/>
+    </div>
+
+<th:block th:with="car = ${cars1}">
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>model</th>
+            <th>series</th>
+            <th>color</th>
+        </tr>
+        <tr th:each="car, state : ${cars1}">
+            <td th:utext="${state.count}">No</td>
+            <td th:utext="${car.getModel()}">model</td>
+            <td th:utext="${car.getSeries()}">model</td>
+            <td th:utext="${car.color}">model</td>
+
+
+        </tr>
+    </table>
+</th:block>
+</div>
+</body>
+</html>
+
+
